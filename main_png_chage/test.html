@@ -1,0 +1,54 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title> 测试 </title>
+<script type="text/javascript" src="jQuery-2.1.4.min.js"></script>
+</head>
+<body>
+
+<div id="fu_div" style="margin:100px 100px 300px 100px;" >
+	<img id = "img1" style="height:200; width:160; " src="a.jpg"/>
+</div>
+
+</body>
+<script>
+//
+	var file_path = "a.jpg";
+	var change = 0.2; 
+	var pyl = 0.2;
+
+// 上方为参数输入内容
+
+	var box = document.getElementById("img1");
+	var pos = box.getBoundingClientRect();
+	console.log(pos);
+	var fu_div = document.getElementById('fu_div');
+	img = document.getElementById('img1');
+	// 上方留空; 如果不留空
+
+	var input_height = pos.height * change;
+	var input_width = pos.width * change;
+	
+	var smail_img = document.createElement('img');
+	smail_img.src = file_path;
+	smail_img.height = input_height;
+	smail_img.width = input_width;
+	// 右偏上移
+	var left1 = pos.left + pos.width + pyl*input_width;
+	var top1 = pos.top - (1+pyl)*input_height;
+	
+	console.log(top1);
+	smail_img.style = "position:absolute; left:"+ left1 +"px; top:"+ top1 +"px; "
+	smail_img.onclick=function(){
+		fu_div.removeChild(smail_img);
+	}
+	//fu_div.appendChild(smail_img);
+	img.onclick=function(){	
+		smail_img.display = "inline";
+		fu_div.appendChild(smail_img);
+		fu_div.insertBefore(img, smail_img);
+	}
+
+	
+</script>
+
+</html>
